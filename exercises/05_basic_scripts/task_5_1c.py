@@ -49,3 +49,9 @@ london_co = {
         "routing": True,
     },
 }
+
+dev=input("Please input device:")
+param=input("Please input param:{}".format(str(london_co[dev].keys())))
+
+device = london_co.get(dev)
+print(london_co[dev].get(param,'WTF?!'))
