@@ -26,6 +26,22 @@ Out[1]: '11111111111111111111111111110000'
 """
 ipset=input("Please type IP(like: 10.1.1.0/24)")
 print(ipset)
-ip = ipset[:-3]
-mask = ipset[-3:]
-print(ip,mask)
+ip = ipset[:-3].split('.')
+mask1 = int(ipset[-2:])
+mask0 = 32-mask1
+maskb =int(mask1 * "1" + mask0 * "0")
+templateip = '''
+{:<8} {:<8} {:<8} {:<8}
+'''
+
+templateb = '''
+{:<08b} {:<08b} {:<08b} {:<08b}
+'''
+print("Network:")
+print(templateip.format(int(ip[0]),int(ip[1]),int(ip[2]),int(ip[3])))
+print(templateb.format(int(ip[0]),int(ip[1]),int(ip[2]),int(ip[3])))
+
+print("Mask:")
+print("/", mask1)
+print(maskb)
+#print(int(ip[0]),int(ip[1]),int(ip[2]),int(ip[3]))
