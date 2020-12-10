@@ -29,7 +29,9 @@ print(ipset)
 ip, mask = ipset.split('/')
 ip = ip.split('.')
 mask0 = 32-int(mask)
-maskb =int(int(mask) * "1" + mask0 * "0")
+maskb =int(mask) * "1" + mask0 * "0"
+m1,m2,m3,m4  = [int(maskb[0:8],2),int(maskb[8:16],2),int(maskb[16:24],2),int(maskb[24:33],2),]
+
 templateip = '''
 {:<8} {:<8} {:<8} {:<8}
 '''
@@ -43,5 +45,6 @@ print(templateb.format(int(ip[0]),int(ip[1]),int(ip[2]),int(ip[3])))
 
 print("Mask:")
 print("/", mask)
-print(maskb)
+print(m1,m2,m3,m4)
 #print(int(ip[0]),int(ip[1]),int(ip[2]),int(ip[3]))
+print(templateb.format(m1,m2,m3,m4))
